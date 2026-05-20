@@ -1,0 +1,74 @@
+# =============================================================
+# devsecops-pipeline-demo — .pre-commit-config.yaml
+# Docs: https://pre-commit.com
+# Install: pip install pre-commit && pre-commit install
+# Run manually: pre-commit run --all-files
+# =============================================================
+
+default_stages: [ pre-commit ]
+fail_fast: false # run all hooks even if one fails, to see all issues at once
+
+repos:
+
+# -----------------------------------------------------------
+# GENERAL — trailing whitespace, file endings, syntax checks
+# -----------------------------------------------------------
+- repo: https://github.com/pre-commit/pre-commit-hooks
+  rev: v6.0.0
+  hooks:
+  - id: trailing-whitespace
+  - id: end-of-file-fixer
+  - id: check-yaml
+  - id: check-json
+  - id: check-toml
+  - id: check-merge-conflict
+  - id: check-added-large-files
+    args: [ '--maxkb=500' ]
+  - id: detect-private-key # detecta claves privadas antes del commit
+  - id: no-commit-to-branch
+    args: [ '--branch', 'main', '--branch', 'prod' ] # protege ramas principales
+
+# -----------------------------------------------------------
+# PYTHON — linting y formatting con ruff
+# -----------------------------------------------------------
+- repo: https://github.com/astral-sh/ruff-pre-commit
+  rev: v0.4.4
+  hooks:
+  - id: ruff
+    args: [ '--fix' ] # auto-corrige lo que puede
+  - id: ruff-format # formatea el código (reemplaza black)
+
+# -----------------------------------------------------------
+# SECRETS — detecta credenciales y tokens antes del commit
+# -----------------------------------------------------------
+- repo: https://github.com/gitleaks/gitleaks
+  rev: v8.18.4
+  hooks:
+  - id: gitleaks
+
+# -----------------------------------------------------------
+# TERRAFORM — formato y validación básica
+# -----------------------------------------------------------
+- repo: https://github.com/antonbabenko/pre-commit-terraform
+  rev: v1.90.0
+  hooks:
+  - id: terraform_fmt
+  - id: terraform_validate
+
+# -----------------------------------------------------------
+# HELM — lint del chart antes de commitear cambios
+# -----------------------------------------------------------
+- repo: https://github.com/gruntwork-io/pre-commit
+  rev: v0.1.23
+  hooks:
+  - id: helmlint
+
+# -----------------------------------------------------------
+# COMMITS — valida formato Conventional Commits
+# -----------------------------------------------------------
+- repo: https://github.com/compilerla/conventional-pre-commit
+  rev: v3.2.0
+  hooks:
+  - id: conventional-pre-commit
+    stages: [ commit-msg ] # se ejecuta al validar el mensaje, no el código
+    args: [ 'feat', 'fix', 'docs', 'chore', 'refactor', 'test', 'ci', 'sec' ]
