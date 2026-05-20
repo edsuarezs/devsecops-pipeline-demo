@@ -1,0 +1,126 @@
+# =============================================================
+# devsecops-pipeline-demo — .gitignore
+# =============================================================
+
+# -------------------------------------------------------------
+# SECRETOS Y CREDENCIALES — nunca deben llegar al repo
+# -------------------------------------------------------------
+.env
+.env.*
+!.env.example          # .env.example SÍ se versiona (es una plantilla)
+*.pem
+*.key
+*.p12
+*.pfx
+*.crt
+*.cer
+secrets/
+credentials/
+*_credentials.json
+*_service_account.json
+
+# -------------------------------------------------------------
+# PYTHON
+# -------------------------------------------------------------
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+*.egg
+*.egg-info/
+dist/
+build/
+eggs/
+parts/
+var/
+sdist/
+develop-eggs/
+.installed.cfg
+lib/
+lib64/
+.venv/
+venv/
+env/
+ENV/
+.pytest_cache/
+.coverage
+coverage.xml
+htmlcov/
+*.cover
+.hypothesis/
+.mypy_cache/
+.ruff_cache/
+
+# -------------------------------------------------------------
+# TERRAFORM
+# -------------------------------------------------------------
+.terraform/
+.terraform.lock.hcl
+*.tfstate
+*.tfstate.*
+*.tfstate.backup
+terraform.tfvars          # puede contener valores sensibles
+!terraform.tfvars.example # la plantilla SÍ se versiona
+override.tf
+override.tf.json
+crash.log
+crash.*.log
+
+# -------------------------------------------------------------
+# DOCKER
+# -------------------------------------------------------------
+.dockerignore             # se versiona, pero por si acaso
+docker-compose.override.yml
+
+# -------------------------------------------------------------
+# HELM
+# -------------------------------------------------------------
+helm/**/charts/           # dependencias descargadas, no código propio
+helm/**/*.lock
+
+# -------------------------------------------------------------
+# EDITORES E IDEs
+# -------------------------------------------------------------
+.vscode/
+!.vscode/extensions.json  # las extensiones recomendadas SÍ se versionan
+.idea/
+*.swp
+*.swo
+*~
+.project
+.classpath
+.settings/
+
+# -------------------------------------------------------------
+# SISTEMAS OPERATIVOS
+# -------------------------------------------------------------
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# -------------------------------------------------------------
+# LOGS Y TEMPORALES
+# -------------------------------------------------------------
+*.log
+*.tmp
+*.temp
+*.bak
+*.orig
+logs/
+tmp/
+temp/
+
+# -------------------------------------------------------------
+# REPORTES DE SEGURIDAD (generados por el pipeline, no código)
+# -------------------------------------------------------------
+reports/
+trivy-results/
+bandit-report.*
+semgrep-results/
+sbom/
