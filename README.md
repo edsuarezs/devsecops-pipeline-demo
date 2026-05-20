@@ -5,7 +5,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Security: Trivy](https://img.shields.io/badge/security-trivy-blue.svg)](https://github.com/aquasecurity/trivy)
 
-> Production-grade DevSecOps pipeline for a FastAPI microservice deployed on Amazon EKS.  
+> Production-grade DevSecOps pipeline for a FastAPI microservice deployed on Amazon EKS.
 > Built as a reference implementation covering CI, CD, IaC, and security best practices.
 
 ---
