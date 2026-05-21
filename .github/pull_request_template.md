@@ -1,3 +1,5 @@
+# Pull Request
+
 ## Description
 
 <!-- Describe what this PR does and why. Link the related issue if applicable. -->
@@ -23,16 +25,16 @@ Closes #<!-- issue number -->
 
 ### Code quality
 
-- [ ] My code follows the project style (ruff passes locally)
+- [ ] My code follows the project style (golangci-lint passes locally)
 - [ ] I have added/updated tests for my changes
-- [ ] All existing tests pass locally (`pytest`)
+- [ ] All existing tests pass locally (`go test ./...`)
 - [ ] I have updated documentation if needed
 
 ### Security
 
 - [ ] I have not hardcoded secrets, tokens, or credentials
 - [ ] I ran Gitleaks locally and found no secrets (`gitleaks detect`)
-- [ ] I ran Bandit locally and addressed findings (`bandit -r app/`)
+- [ ] I ran gosec locally and addressed findings (`gosec ./...`)
 - [ ] New dependencies have been reviewed for known vulnerabilities
 
 ### Infrastructure (if applicable)
