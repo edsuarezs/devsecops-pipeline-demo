@@ -1,0 +1,27 @@
+run:
+  timeout: 5m
+
+linters:
+  enable:
+  - errcheck # verifica errores no manejados
+  - gosec # seguridad (SAST para Go)
+  - govet # detecta bugs sutiles
+  - ineffassign # asignaciones ineficientes
+  - staticcheck # análisis estático avanzado
+  - unused # código muerto
+  - gosimple # simplificaciones idiomáticas
+  - bodyclose # HTTP response body sin cerrar
+  - gocritic # checks adicionales de estilo
+
+linters-settings:
+  gosec:
+    severity: medium
+    confidence: medium
+  errcheck:
+    check-type-assertions: true
+    check-blank: true
+  gocritic:
+    enabled-tags:
+    - diagnostic
+    - style
+    - performance
